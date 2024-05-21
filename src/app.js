@@ -1,13 +1,15 @@
-const express = require('express')
-const app = express()
-const port = 8080
+const express = require('express');
+const app = express();
+const PORT = process.env['PORT'] || 8080;
+const DEBUG = process.env['DEBUG'] || false;
 
 app.get('/', (req, res) => {
   res.json({ "message": 'Hello World!'});
 });
 
 app.get('/foo', (req, res) => {
-  console.log("This is a foo request");
+  if (DEBUG)
+    console.log("This is a foo request");
   res.json(
     {
       "headers": req.headers,
@@ -24,7 +26,8 @@ app.get('/foo', (req, res) => {
 });
 
 app.get('/bar', (req, res) => {
-  console.log("This is a bar request");
+  if (DEBUG)
+    console.log("This is a bar request");
   res.json(
     {
       "headers": req.headers,
@@ -40,6 +43,6 @@ app.get('/bar', (req, res) => {
   );
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });

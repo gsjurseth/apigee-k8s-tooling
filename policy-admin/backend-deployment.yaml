@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: httpbin
+  namespace: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+  namespace: http
+  labels:
+    app: httpbin
+    service: httpbin
+spec:
+  type: LoadBalancer
+  ports:
+  - name: https
+    port: 80
+    targetPort: 80
+  selector:
+    app: httpbin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: http
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: httpbin
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        version: v1
+    spec:
+      serviceAccountName: httpbin
+      containers:
+      - image: docker.io/kennethreitz/httpbin
+        imagePullPolicy: IfNotPresent
+        name: httpbin
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 1
+            memory: 1024Mi
+          limits:
+            cpu: 1
+            memory: 1024Mi

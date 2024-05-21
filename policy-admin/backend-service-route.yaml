@@ -1,0 +1,20 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: get-backend-service-http-bin
+  namespace: http
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: internal-https
+    namespace: default
+  hostnames:
+  - "dg-runtime-test6-dep.hybrid.e2e.apigeeks.net"
+  rules:
+  - matches:
+    - path:
+        value: /get
+    backendRefs:
+    - name: httpbin
+      port: 80
+      namespace: http

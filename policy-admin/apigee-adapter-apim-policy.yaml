@@ -1,0 +1,17 @@
+apiVersion: apim.googleapis.com/v1alpha1
+kind: APIMExtensionPolicy
+metadata:
+   name: apigee-adapter-apim-policy 
+spec:
+ name: apigee-adapter-apim-policy 
+ location: us-west1
+ failOpen: false
+ timeout: 1000ms
+ extensionServerRef: # depends on Gateway that routes to the apigee adapter service
+   name: apigee-adapter-gateway
+   kind: Gateway
+   namespace: apigee
+ targetRef:  # See https://gateway-api.sigs.k8s.io/geps/gep-713
+   name: internal-https 
+   kind: Gateway
+   namespace: default

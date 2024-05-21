@@ -1,0 +1,13 @@
+apiVersion: apigee.googleapis.com/v1
+kind: Apigeegatewaypolicy
+metadata:
+  name: security-flow-hook-policy
+  annotations:
+    envName: dev-prog-proxy
+spec:
+  ref: marketing-department-security-governance 
+  type: RequestProcessor
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: external-https

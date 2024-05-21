@@ -1,0 +1,18 @@
+apiVersion: apim.googleapis.com/v1alpha1
+kind: APIOperationSet
+metadata:
+  name: foo-set
+spec:
+  apiProductRefs:
+  - name: foo-product
+    kind: APIProduct
+    group: apim.googleapis.com
+  quota:
+    limit: 4
+    interval: 1
+    timeUnit: minute
+  restOperations:
+   - name: ListItems
+     path: "/foo"
+     methods:
+     - GET

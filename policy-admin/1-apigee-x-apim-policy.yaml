@@ -1,0 +1,18 @@
+apiVersion: apim.googleapis.com/v1alpha1
+kind: APIMExtensionPolicy
+metadata:
+  name: apigee-x-apim-policy
+  namespace: default
+spec:
+  location: us-west1
+  failOpen: false
+  timeout: 1000ms
+  extensionServerRef: # identifies the Gateway of Apigee Adapter service
+    name: apigee-adapter-gateway
+    kind: Gateway
+    namespace: apigee
+  targetRef: # identifies the Gateway to install extension on
+    name: internal-http
+    kind: Gateway
+    namespace: default
+

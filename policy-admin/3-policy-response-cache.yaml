@@ -1,0 +1,18 @@
+apiVersion: apigee.googleapis.com/v1
+kind: ResponseCache
+metadata:
+  name: response-cache-1
+spec:
+  mode:
+  - ProxyRequest
+  - ProxyResponse
+  enabled: true
+  name: response-cache-1
+  displayName: response-cache-1
+  cacheKey:
+    fragments:
+    - type: string
+      ref: request.uri
+  cacheExpiry:
+    timeoutInSeconds:
+      value: "600"

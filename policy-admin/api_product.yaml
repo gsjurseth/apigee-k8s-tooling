@@ -1,0 +1,20 @@
+apiVersion: apim.googleapis.com/v1alpha1
+kind: APIProduct
+metadata:
+ name: httpbin-product
+ annotations:
+  apigee.googleapis.com/environment: '{organization: "apigee-product-demo", environments:["dev-prog-proxy"]}'
+spec:
+  name: httpbin-product
+  approvalType: auto
+  description: store-product provides management of my store API.
+  displayName: httpbin-product
+  analytics:
+    enabled: true
+  enforcementRefs:
+  - name: apim-extension
+    kind: APIMExtensionPolicy
+    group: apim.googleapis.com
+  attributes:
+  - name: access
+    value: public

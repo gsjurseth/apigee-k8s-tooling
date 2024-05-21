@@ -1,0 +1,19 @@
+apiVersion: mycompany.apis.com/v1
+kind: Secgov
+metadata:
+  name: marketing-department-security-governance
+  annotations:
+    envName: dev-prog-proxy
+spec:
+  displayName: marketing-department-security-governance
+  name: marketing-department-security-governance
+  filters:
+    - kind: SpikeArrest
+      name: spike-arrest-1
+      group: apigee.googleapis.com
+    - kind: ResponseCache
+      name: response-cache-1
+      group: apigee.googleapis.com
+    - kind: JS
+      name: js-1
+      group: apigee.googleapis.com

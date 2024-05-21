@@ -1,0 +1,13 @@
+apiVersion: apigee.googleapis.com/v1
+kind: SpikeArrest
+metadata:
+  name: spike-arrest-1
+spec:
+  enabled: true
+  name: spike-arrest-1 
+  displayName: spike-arrest-1 
+  identifier:
+    ref: request.header.name
+  useEffectiveCount: true
+  peakMessageRate:
+    value: "2pm"

@@ -1,0 +1,13 @@
+apiVersion: apigee.googleapis.com/v1
+kind: JS
+metadata:
+  name: js-1
+spec:
+  displayName: js-1
+  name: js-1
+  timeLimit: 2000
+  source: |
+    var sum = 1+1;
+    context.setVariable("request.header.first", 1);
+    context.setVariable("request.header.second", 1);
+    context.setVariable("request.header.sum", sum);

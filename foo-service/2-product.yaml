@@ -1,0 +1,19 @@
+apiVersion: apim.googleapis.com/v1alpha1
+kind: APIProduct
+metadata:
+  name: foo-product
+  annotations:
+    apigee.googleapis.com/environment: '{organization: "apigee-product-demo", environments:["dev-prog-proxy"]}' # Must match the organization & environments used when configuring the apigee-adapter service
+spec:
+  approvalType: auto
+  description: foo-product provides management of all of my foo.
+  displayName: Store
+  analytics:
+    enabled: true
+  enforcementRefs:
+  - name: apim-extension
+    kind: APIMExtensionPolicy
+    group: apim.googleapis.com
+  attributes:
+  - name: access
+    value: public

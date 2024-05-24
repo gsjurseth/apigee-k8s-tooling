@@ -1,5 +1,8 @@
 #!/bin/bash
 
+gcloud services enable container.googleapis.com
+
+
 kubectl create namespace apigee
 
 helm install apigee-k8s-controller \

@@ -7,7 +7,7 @@ fi
 
 gcloud services enable container.googleapis.com
 
-if [$? -eq "0" ]
+if [ $? -eq 0 ]
 then
     echo "Now waiting for 60 seconds before continuing"
     sleep 60
@@ -17,7 +17,7 @@ else
 fi
 
 
-if [$? -eq "0" ]
+if [ $? -eq 0 ]
 then
     gcloud container clusters create-auto k8s-tooling --region us-west1
 else
@@ -26,7 +26,7 @@ else
 fi
 
 
-if [$? -eq "0" ]
+if [ $? -eq 0 ]
 then
     gcloud container clusters get-credentials k8s-tooling --region us-west1
 else
@@ -34,7 +34,7 @@ else
     exit 1
 fi
 
-if [$? -eq "0" ]
+if [ $? -eq 0 ]
 then
     kubectl create namespace apigee
 else
@@ -42,7 +42,7 @@ else
     exit 1
 fi
 
-if [$? -eq "0" ]
+if [ $? -eq 0 ]
 then
     helm install apigee-k8s-controller \
     oci://us-docker.pkg.dev/apigee-release/apigee-k8s-tooling-helm-charts/apigee-k8s-controller-milestone1-public-preview \

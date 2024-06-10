@@ -58,5 +58,7 @@ else
 fi
 
 
-echo now run the following and verify the service account is setup. Once done run setup-2.sh
+echo now run the following and verify the service account is setup
 echo kubectl describe serviceaccounts preview-ksa -n apigee
+
+echo "Once that's done go ahead and complete the installation of the remote service before executing setup-2.sh"

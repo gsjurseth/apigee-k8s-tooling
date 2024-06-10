@@ -6,6 +6,7 @@ then
 fi
 
 gcloud services enable container.googleapis.com
+gcloud services enable networkservices.googleapis.com
 
 if [ $? -eq 0 ]
 then

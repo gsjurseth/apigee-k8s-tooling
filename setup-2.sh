@@ -11,7 +11,7 @@ then
     echo "Adding policy binding for Apigee admin role" >&2
     gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --member "serviceAccount:preview-gsa@${PROJECT_ID}.iam.gserviceaccount.com" \
-    --role "roles/apigee.apiAdminV1"
+    --role "roles/apigee.apiAdminV2"
 else
     echo "Failed creating policy binding for workload identity" >&2
     exit 1

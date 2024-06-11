@@ -1,10 +1,31 @@
 #!/bin/bash
 
-echo "Adding iam policy binding for workloadIdentity" >&2
-gcloud iam service-accounts add-iam-policy-binding \
-preview-gsa@${PROJECT_ID}.iam.gserviceaccount.com \
---role roles/iam.workloadIdentityUser \
---member "serviceAccount:${PROJECT_ID}.svc.id.goog[apigee/preview-ksa]"
+if [ -z $PROJECT_ID ]
+then
+    echo "You must set PROJECT_ID before executing" >&2
+    exit 1
+fi
+
+gcloud iam service-accounts list | fgrep preview-gsa>/dev/null
+if [ $? -eq 0 ]
+then
+  echo "preview-gsa account already exists .. skipping" >&2
+else
+  echo "Creating preview-gsa service account" >&2
+  gcloud iam service-accounts create preview-gsa
+fi
+
+if [ $? -eq 0 ]
+then
+  echo "Adding iam policy binding for workloadIdentity" >&2
+  gcloud iam service-accounts add-iam-policy-binding \
+  preview-gsa@${PROJECT_ID}.iam.gserviceaccount.com \
+  --role roles/iam.workloadIdentityUser \
+  --member "serviceAccount:${PROJECT_ID}.svc.id.goog[apigee/preview-ksa]"
+else
+    echo "Failed creating preview-gsa service account" >&2
+    exit 1
+fi
 
 if [ $? -eq 0 ]
 then

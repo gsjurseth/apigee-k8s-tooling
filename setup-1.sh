@@ -3,6 +3,7 @@
 if [ -z $PROJECT_ID ]
 then
     echo "You must set PROJECT_ID before executing" >&2
+    exit 1
 fi
 
 gcloud services enable container.googleapis.com

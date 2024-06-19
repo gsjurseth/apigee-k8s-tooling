@@ -39,6 +39,12 @@ cat service.yaml | sed -i -e "s/\$PROJECT_ID/$PROJECT_ID/" | kubectl apply -f -
 kubectl apply -f route.yaml
 ```
 
+## Applying some apigee bits
+For the `apigee-adapter` to work we need to work we'll need to update `apigee-adapter-service`
+in the apigee-adapter directory with the org and environment that's relevant for your use case. It will the be same org/env combination you used when setting up the envoy-adapter remove service.
+
+Get that updated and then you can `kubectl apply` that whole directory.
+
 ## Running a demo
 Now copy the gateway ip that you got when your gateway config completed:
 

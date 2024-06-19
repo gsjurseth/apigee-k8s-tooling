@@ -8,8 +8,6 @@ spec:
   approvalType: auto
   description: foo-product provides management of all of my foo.
   displayName: Store
-  analytics:
-    enabled: true
   enforcementRefs:
   - name: apim-extension
     kind: APIMExtensionPolicy

@@ -1,16 +1,86 @@
 # apigee-k8s-tooling
 This repo aims to make it easy to get up and running with a sample application with Apigee's kubernetes tooling.
 
-## A cluster
-You're going to need a cluster and we're going to be using workload identity. By far the easiest way to do this is to simply deploy an autopilot cluster like so:
+## Initial setup: cluster and services
+To make this simple I've added two scripts. This does *most* of what's required, but makes some assumptions. Firstly, it does all work in us-west1 and makes a clsuter called: `k8s-tooling`. Secondly, it assumes that you will be relying on the default subnet.
+
+To that end, in addition to all other work you'll need to add a proxy subnet to your default vpc.
+
+Then you sipmly
 
 ```bash
-gcloud container clusters create-auto k8s-tooling-test \
-    --region=us-west1 
+./setup-1.sh
 ```
-And then fetch the credentials
+
+When that completes run the insalltion of the envoy-adapter remote service. You only need the remote-service cli. Generate the `config.yaml` and apply it to your GKE cluster created during the first part.
+
+Next run:
+
 ```bash
-gcloud container clusters get-credentials k8s-tooling --region us-west1
-    --region=us-west1 
+./setup-2.sh
 ```
+
+At this point you should be setup. What's left is to build and deploy the service for foo and bar respectively. If you've got $PROJECT_ID set you should be able to just
+
+```bash
+cd src
+./buildit.sh
+```
+That will build the service. Now you can create a gateway by:
+
+```bash
+kubectl apply -f gateway.yaml
+```
+
+Wait for that to complete, and once done you can go into foo and bar respectively and execute (again assuming that you have $PROJECT_ID set):
+
+```bash
+cat service.yaml | sed -i -e "s/\$PROJECT_ID/$PROJECT_ID/" | kubectl apply -f -
+kubectl apply -f route.yaml
+```
+
+## Running a demo
+Now copy the gateway ip that you got when your gateway config completed:
+
+```bash
+kubectl get gateway
+```
+
+Now run a curl pod by:
+
+```bash
+kubectl run -it --image=curlimages/curl curl -- sh
+```
+
+From here you should be able to:
+
+```bash
+curl -H "host: k8s-demo.apigeeks.net" http://<gateway_ip>/foo
+```
+
+You should see some output. So far no apigee here.
+
+Now lets add an apim extension:
+
+```bash
+cd foo-service
+kubectal apply -f 1-apimextension.yaml
+```
+
+Now when we execute our curl command like so:
+
+```bash
+curl -H "host: k8s-demo.apigeeks.net" http://<gateway_ip>/foo
+```
+
+We get 401 errors...
+
+Now add the procuct and product operation yamls for foo. Create a developer and app in the UI, grab the key and execute your curl again like so:
+
+```bash
+curl -H "host: k8s-demo.apigeeks.net" http://<gateway_ip>/foo -H "x-api-key: <your_key>"
+```
+
+Now it should work again, but with additional headers. Furthermore, the quota should work as well.
+
 

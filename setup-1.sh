@@ -52,7 +52,7 @@ then
     echo "Installing controller"
     helm install apigee-k8s-controller \
     oci://us-docker.pkg.dev/apigee-release/apigee-k8s-tooling-helm-charts/apigee-k8s-controller-milestone1-public-preview \
-    --version 1.3 --set project_id=${PROJECT_ID}
+    --version 1.4 --set project_id=${PROJECT_ID}
 else
     echo "Failed to `helm install` apigee controller..." >&2
     exit 1

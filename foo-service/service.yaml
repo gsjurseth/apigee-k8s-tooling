@@ -45,7 +45,7 @@ spec:
         managed-by: apigee
     spec:
       containers:
-      - image: gcr.io/$PROJECT_ID/service:1.0.4
+      - image: gcr.io/pranav-x-poc/service:1.0.4
         imagePullPolicy: IfNotPresent
         name: foo-service
         ports:

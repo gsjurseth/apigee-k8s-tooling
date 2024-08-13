@@ -6,11 +6,11 @@ spec:
   location: us-west1
   failOpen: false
   timeout: 1000ms
-  extensionServerRef: # depends on Gateway that routes to the apigee adapter service
-     name: apigee-adapter-gateway
-     kind: Gateway
-     namespace: apigee
   targetRef:
      name: internal-http
      kind: Gateway
      namespace: default
+    #  extensionServerRef: # depends on Gateway that routes to the apigee adapter service
+    #     name: apigee-adapter-gateway
+    #     kind: Gateway
+    #     namespace: apigee

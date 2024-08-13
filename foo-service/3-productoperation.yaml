@@ -2,6 +2,7 @@ apiVersion: apim.googleapis.com/v1alpha1
 kind: APIOperationSet
 metadata:
   name: foo-set
+  namespace: apigee
 spec:
   apiProductRefs:
   - name: demoproduct

@@ -48,5 +48,8 @@ spec:
       - image: gcr.io/pranav-x-poc/service:1.0.4
         imagePullPolicy: IfNotPresent
         name: foo-service
+        env:
+        - name: DEBUG
+          value: "TRUE"
         ports:
         - containerPort: 8080

@@ -1,17 +1,20 @@
 apiVersion: apim.googleapis.com/v1alpha1
 kind: APIProduct
 metadata:
-  name: foo-product
-  annotations:
-    apigee.googleapis.com/environment: '{organization: "apigee-product-demo", environments:["dev-prog-proxy"]}' # Must match the organization & environments used when configuring the apigee-adapter service
+ name: demoproduct
+ namespace: apigee
 spec:
+  name: demoproduct
   approvalType: auto
-  description: foo-product provides management of all of my foo.
-  displayName: Store
+  description: Demo product created via k8s controller
+  displayName: Demo Product
+  analytics:
+    enabled: true
   enforcementRefs:
-  - name: apim-extension
+  - name: global-ext-lb1-apim-policy 
     kind: APIMExtensionPolicy
     group: apim.googleapis.com
+    namespace: apigee
   attributes:
   - name: access
     value: public

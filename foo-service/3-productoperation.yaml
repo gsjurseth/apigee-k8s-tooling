@@ -4,15 +4,20 @@ metadata:
   name: foo-set
 spec:
   apiProductRefs:
-  - name: foo-product
+  - name: demoproduct
     kind: APIProduct
     group: apim.googleapis.com
+    namespace: apigee
   quota:
-    limit: 4
+    limit: 5
     interval: 1
     timeUnit: minute
   restOperations:
-   - name: ListItems
+   - name: ListFoo
      path: "/foo"
+     methods:
+     - GET
+   - name: GetFoo
+     path: "/foo/*"
      methods:
      - GET

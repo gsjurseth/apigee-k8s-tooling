@@ -2,17 +2,23 @@ apiVersion: apim.googleapis.com/v1alpha1
 kind: APIOperationSet
 metadata:
   name: bar-set
+  namespace: apigee
 spec:
   apiProductRefs:
-  - name: foo-product
+  - name: demoproduct
     kind: APIProduct
     group: apim.googleapis.com
+    namespace: apigee
   quota:
-    limit: 6
+    limit: 5
     interval: 1
     timeUnit: minute
   restOperations:
-   - name: ListItems
+   - name: Listbar
      path: "/bar"
+     methods:
+     - GET
+   - name: Getbar
+     path: "/bar/*"
      methods:
      - GET

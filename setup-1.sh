@@ -51,8 +51,8 @@ if [ $? -eq 0 ]
 then
     echo "Installing controller"
     helm install apigee-k8s-controller \
-    oci://us-docker.pkg.dev/apigee-release/apigee-k8s-tooling-helm-charts/apigee-k8s-controller-milestone1-public-preview \
-    --version 1.4 --set project_id=${PROJECT_ID}
+    oci://us-docker.pkg.dev/apigee-release/apigee-k8s-tooling-helm-charts/apigee-k8s-controller-milestone2-wip --version 1.0 \
+    --set project_id=${PROJECT_ID}
 else
     echo "Failed to `helm install` apigee controller..." >&2
     exit 1

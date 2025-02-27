@@ -1,24 +1,25 @@
-apiVersion: apim.googleapis.com/v1alpha1
-kind: APIOperationSet
-metadata:
-  name: bar-set
-  namespace: apigee
-spec:
-  apiProductRefs:
-  - name: demoproduct
-    kind: APIProduct
-    group: apim.googleapis.com
-    namespace: apigee
-  quota:
-    limit: 5
-    interval: 1
-    timeUnit: minute
-  restOperations:
-   - name: Listbar
-     path: "/bar"
-     methods:
-     - GET
-   - name: Getbar
-     path: "/bar/*"
-     methods:
-     - GET
+# apim-policies.yaml
+  apiVersion: apim.googleapis.com/v1alpha1
+  kind: APIOperationSet
+  metadata:
+    name: item-set
+    namespace: apim
+  spec:
+    apiProductRefs:
+      - name: myk8sproduct
+        kind: APIProduct
+        group: apim.googleapis.com
+        namespace: apim
+    quota:
+      limit: 5
+      interval: 1
+      timeUnit: minute
+    restOperations:
+    - name: Listbar
+      path: "/bar"
+      methods:
+      - GET
+    - name: Getbar
+      path: "/bar/*"
+      methods:
+      - GET

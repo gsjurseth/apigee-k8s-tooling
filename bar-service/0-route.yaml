@@ -4,7 +4,7 @@ metadata:
   name: bar-service-route
 spec:
   parentRefs:
-  - name: global-ext-lb1
+  - name: external-gw
   hostnames:
   - "k8s-demo.apigeeks.net"
   rules:

@@ -45,8 +45,11 @@ spec:
         managed-by: apigee
     spec:
       containers:
-      - image: gcr.io/pranav-x-poc/service:1.0.4
+      - image: gcr.io/apigee-product-demo/service:1.0.4
         imagePullPolicy: IfNotPresent
         name: bar-service
+        env:
+        - name: DEBUG
+          value: "TRUE"
         ports:
         - containerPort: 8080
